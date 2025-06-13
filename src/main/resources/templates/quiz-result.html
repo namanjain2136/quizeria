@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Quiz Result - Quizeria</title>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial, sans-serif; background: #f8f9fa; text-align: center; margin-top: 80px; }
+        h1 { color: #2d6cdf; }
+        .score { font-size: 2em; color: #28a745; }
+        .btn { margin: 20px; padding: 10px 24px; font-size: 1em; border-radius: 8px; border: none; background: #2d6cdf; color: #fff; cursor: pointer; }
+        .btn:hover { background: #1b4fa2; }
+        textarea { width: 350px; padding: 8px; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <h1 th:text="'Quiz: ' + ${quiz.title}">Quiz Result</h1>
+    <p class="score" th:text="'Your Score: ' + ${score} + ' / ' + ${total}"></p>
+    
+    <!-- Feedback Form -->
+    <form th:action="@{'/student/quiz/' + ${quiz.id} + '/feedback'}" method="post">
+        <label for="feedback">Your Feedback:</label><br>
+        <textarea name="feedback" id="feedback" rows="4" cols="40" required></textarea><br>
+        <button class="btn" type="submit">Submit Feedback</button>
+    </form>
+    
+    <a href="/student"><button class="btn">Back to Quizzes</button></a>
+    <a href="/"><button class="btn">Home</button></a>
+</body>
+</html>

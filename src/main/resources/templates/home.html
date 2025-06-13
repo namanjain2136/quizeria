@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home - Quizeria</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f8f9fa; text-align: center; margin-top: 80px; }
+        .btn {
+            margin: 20px;
+            padding: 12px 28px;
+            font-size: 1.1em;
+            border-radius: 8px;
+            border: none;
+            background: #2d6cdf;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn:hover { background: #1b4fa2; }
+    </style>
+</head>
+<body>
+    <h1 th:text="${title}">Welcome to Quizeria!</h1>
+    <div>
+        <a href="/admin"><button class="btn">Admin Panel</button></a>
+        <a href="/student"><button class="btn">Student Panel</button></a>
+    </div>
+</body>
+</html>

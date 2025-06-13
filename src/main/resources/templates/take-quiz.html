@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Take Quiz - Quizeria</title>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial, sans-serif; background: #f8f9fa; margin: 0; padding: 0; }
+        .container { max-width: 600px; margin: 40px auto; background: #fff; padding: 32px; border-radius: 12px; box-shadow: 0 4px 16px rgba(44,108,223,0.08);}
+        h1 { color: #2d6cdf; }
+        .btn { margin: 20px 0; padding: 10px 24px; font-size: 1em; border-radius: 8px; border: none; background: #2d6cdf; color: #fff; cursor: pointer; }
+        .btn:hover { background: #1b4fa2; }
+        .question-block { margin-bottom: 32px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 th:text="'Quiz: ' + ${quiz.title}">Quiz</h1>
+        <form th:action="@{'/student/quiz/' + ${quiz.id} + '/submit'}" method="post">
+            <div th:each="q, idx : ${questions}" class="question-block">
+                <p><strong th:text="${idx.index + 1} + '. ' + ${q.text}"></strong></p>
+                <label>
+                    <input type="radio" th:name="${'question_' + q.id}" value="A" required>
+                    <span th:text="${q.optionA}"></span>
+                </label><br>
+                <label>
+                    <input type="radio" th:name="${'question_' + q.id}" value="B">
+                    <span th:text="${q.optionB}"></span>
+                </label><br>
+                <label>
+                    <input type="radio" th:name="${'question_' + q.id}" value="C">
+                    <span th:text="${q.optionC}"></span>
+                </label><br>
+                <label>
+                    <input type="radio" th:name="${'question_' + q.id}" value="D">
+                    <span th:text="${q.optionD}"></span>
+                </label>
+            </div>
+            <button class="btn" type="submit">Submit Quiz</button>
+        </form>
+        <a href="/student"><button class="btn">Back to Quizzes</button></a>
+    </div>
+</body>
+</html>
